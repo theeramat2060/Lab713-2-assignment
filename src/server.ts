@@ -8,7 +8,7 @@ app.get('/', (req: Request, res: Response) => {
     res.json('Hello World!')
 })
 
-app.get('/book', (req: Request, res: Response) => {
+app.get('/books', (req: Request, res: Response) => {
     if (req.query.title) {
         const title = req.query.title;
         const filteredBook = books.filter((book) => book.title === title);
@@ -17,6 +17,18 @@ app.get('/book', (req: Request, res: Response) => {
         res.json(books);
     }
 })
+
+
+app.get("/books/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const book = books.find((book) => book.id === id);
+    if (book) {
+        res.json(book);
+    } else {
+        res.status(404).send("Event not found");
+    }
+});
+
 
 app.get("/events", (req, res) => {
     if (req.query.category) {
@@ -27,6 +39,17 @@ app.get("/events", (req, res) => {
         res.json(events);
     }
 });
+
+app.get("/events/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const event = events.find((event) => event.id === id);
+    if (event) {
+        res.json(event);
+    } else {
+        res.status(404).send("Event not found");
+    }
+});
+
 
 
 
