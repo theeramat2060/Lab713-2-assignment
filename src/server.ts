@@ -1,37 +1,14 @@
 import express, { Request, Response } from "express";
-import { getAllEvents, getEventByCategory, getEventById, addEvent } from "./services/EventService";
-import { event } from "./generated/prisma";
+import eventRoute from "./routes/EventRoute";
 const app = express();
-const port = 3000;
-
 app.use(express.json());
+app.use('/events',eventRoute);
+
+const port = 3000;
 
 app.get('/', (req: Request, res: Response) => {
     res.json('Hello World!');
 })
-app.get("/events/:id", async (req, res) => {
-    const id = parseInt(req.params.id);
-    const event = await getEventById(id);
-    if (event) {
-        res.json(event);
-    } else {
-        res.status(404).send("Event not found");
-    }
-});
-app.get("/events", async (req, res) => {
-    if (req.query.category) {
-        const category = req.query.category as string;
-        const filteredEvents = await getEventByCategory(category);
-        res.json(filteredEvents);
-    } else {
-        res.json(await getAllEvents());
-    }
-});
-
-app.post("/events", async (req, res) => {
-    const newEvent: event = req.body;
-    res.json(await addEvent(newEvent));
-});
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`)
