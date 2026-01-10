@@ -1,6 +1,4 @@
 import {prisma} from '../prisma';
-// import type {Event} from '../models/Event';
-// import type {eventModel as Event} from "../generated/prisma/models/event";
 import type { event } from "../generated/prisma";
 
     export function getEventByCategory(category: string) {
@@ -10,20 +8,51 @@ import type { event } from "../generated/prisma";
     }
 
     export function getAllEvents() {
-      return prisma.event.findMany();
+        console.log("getAllEvents called with include");
+        return prisma.event.findMany({
+            include: { organizer: true }
+        });
     }
+    // export function getAllEventsWithOrganizer() {
+    //     console.log("getAllEvents called with include");
+    //     return prisma.event.findMany({
+    //         include: {
+    //             organizer: {
+    //                 select: {
+    //                     name: true,
+    //                 },
+    //             },
+    //         },
+    //         omit: {organizerId: true}
+    //     });
+    // }
     export function getAllEventsWithOrganizer() {
         return prisma.event.findMany({
-            include: {organizer: true},
-            omit: {organizerId: true}
-    });
+            select: {
+                id: true,
+                category: true,
+                organizerId: false,
+                organizer: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        });
     }
+
 
 
 
 export function getEventById(id: number) {
       return prisma.event.findUnique({
             where: { id },
+              select: {
+                  id: true,
+                  title: true,
+                  time: true,
+                  organizerId: true,
+              }
       });
     }
 

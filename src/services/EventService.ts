@@ -1,9 +1,6 @@
-// import {Event} from "../models/Event";
-// import * as repo from "../repository/EventRepositoryDb";
-// import type {eventModel as Event} from "../generated/prisma/models/event";
-
 import type { event as Event } from "../generated/prisma";
 import * as repo from "../repository/eventRepositoryPrisma";
+import {getAllEventsWithOrganizer} from "../repository/eventRepositoryPrisma";
 
 
 export function getEventByCategory(category: string) {
