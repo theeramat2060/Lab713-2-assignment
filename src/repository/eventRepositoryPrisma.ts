@@ -13,33 +13,41 @@ import type { event } from "../generated/prisma";
             include: { organizer: true }
         });
     }
-    // export function getAllEventsWithOrganizer() {
-    //     console.log("getAllEvents called with include");
-    //     return prisma.event.findMany({
-    //         include: {
-    //             organizer: {
-    //                 select: {
-    //                     name: true,
-    //                 },
-    //             },
-    //         },
-    //         omit: {organizerId: true}
-    //     });
-    // }
     export function getAllEventsWithOrganizer() {
+        console.log("getAllEvents called with include");
         return prisma.event.findMany({
-            select: {
-                id: true,
-                category: true,
-                organizerId: false,
+            include: {
                 organizer: {
                     select: {
-                        name: true
-                    }
-                }
-            }
+                        name: true,
+                    },
+                },
+                participants: {
+                    select: {
+                      id: true,
+                          name: true,
+                          email: true,
+                          events: true,
+                    },
+              },
+            },
+            omit: {organizerId: true}
         });
     }
+    // export function getAllEventsWithOrganizer() {
+    //     return prisma.event.findMany({
+    //         select: {
+    //             id: true,
+    //             category: true,
+    //             organizerId: false,
+    //             organizer: {
+    //                 select: {
+    //                     name: true
+    //                 }
+    //             }
+    //         }
+    //     });
+    // }
 
 
 
