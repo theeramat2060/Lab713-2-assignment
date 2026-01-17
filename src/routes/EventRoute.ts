@@ -14,28 +14,33 @@ const router = express.Router();
                     const filteredEvents = await service.getEventByCategory(category);
                     res.json(filteredEvents);
                 } else {
+                    console.log("getAllEvents called with include 1");
                     res.json(await service.getAllEvents());
                 }
     });
 
-    router.get("/events", async(req, res) => {
-        console.log("getAllEventsWithPagination called with include");
+    router.get("/page", async(req, res) => {
         if (req.query.pageSize && req.query.pageNo) {
+            console.log("getAllEventsWithPagination called with include");
             const pageSize = parseInt(req.query.pageSize as string);
             const pageNo = parseInt(req.query.pageNo as string);
-            res.json(await service.getAllEventsWithPagination(pageSize, pageNo));
+            const events = await service.getAllEventsWithPagination(pageSize, pageNo);
+                const totalEvents = await service.count();
+                res.setHeader("x-total-count", totalEvents.toString());
+                res.json(events);
         } else if (req.query.category) {
             const category = req.query.category as string;
             const filteredEvents = await service.getEventByCategory(category);
             res.json(filteredEvents);
         } else {
+            console.log("getAllEvents called with include");
             res.json(await service.getAllEvents());
+
         }
     });
 
     router.post("/", async (req, res) => {
             const newEvent: event = req.body;
-        
                 res.json(await service.addEvent(newEvent));
         });
     router.get("/:id", async (req, res) => {

@@ -92,7 +92,11 @@ export function getAllEventsWithOrganizerPagination(pageSize: number, pageNo: nu
                     organizerId: newEvent.organizerId
     }
     });
+    }
+    export function countEvent() {
+          return prisma.event.count();
+    }
 
-}
+
 
 
