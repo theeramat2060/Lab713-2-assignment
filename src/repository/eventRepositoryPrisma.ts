@@ -8,13 +8,11 @@ import type { event } from "../generated/prisma";
     }
 
     export function getAllEvents() {
-        console.log("getAllEvents called with include");
         return prisma.event.findMany({
             include: { organizer: true }
         });
     }
     export function getAllEventsWithOrganizer() {
-        console.log("getAllEvents called with include");
         return prisma.event.findMany({
             include: {
                 organizer: {
@@ -48,11 +46,28 @@ import type { event } from "../generated/prisma";
     //         }
     //     });
     // }
+export function getAllEventsWithOrganizerPagination(pageSize: number, pageNo: number) {
+      return prisma.event.findMany({
+            skip: pageSize * (pageNo - 1),
+            take: pageSize,
+            select: {
+              id: true,
+                  category: true,
+            	 title: true,
+                  organizerId: false,
+                  organizer: {
+                    select: {
+                          name: true
+                        }
+                  }
+            }
+    
+          });
+    }
 
 
 
-
-export function getEventById(id: number) {
+    export function getEventById(id: number) {
       return prisma.event.findUnique({
             where: { id },
               select: {

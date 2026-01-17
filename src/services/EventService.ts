@@ -1,6 +1,5 @@
 import type { event as Event } from "../generated/prisma";
 import * as repo from "../repository/eventRepositoryPrisma";
-import {getAllEventsWithOrganizer} from "../repository/eventRepositoryPrisma";
 
 
 export function getEventByCategory(category: string) {
@@ -18,3 +17,7 @@ export function getEventById(id: number) {
 export function addEvent(newEvent: Event) {
       return repo.addEvent(newEvent);
 }
+export function getAllEventsWithPagination(pageSize: number, pageNo: number) {
+      return repo.getAllEventsWithOrganizerPagination(pageSize, pageNo);
+}
+
