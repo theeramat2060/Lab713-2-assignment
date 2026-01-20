@@ -9,11 +9,21 @@
 //     console.log(color[i])
 // }
 
-let name = ['van', 'blue', 'bomb', 'brook', 'orange']
-for (let i = 0; i < name.length; i++) {
-    if (name[i].length > 5){
-        console.log("สวัสดีคุณ ",name[i])
-    }else {
-        console.log("Hello ",name[i])
-    }
+// let name = ['van', 'blue', 'bomb', 'brook', 'orange']
+// for (let i = 0; i < name.length; i++) {
+//     if (name[i].length > 5){
+//         console.log("สวัสดีคุณ ",name[i])
+//     }else {
+//         console.log("Hello ",name[i])
+//     }
+// }
+
+// let color = ['red', 'blue', 'green', 'yellow', 'orange', 'purple']
+// for (const c of color) {
+//     console.log(c);
+// }
+
+let color = ['red', 'blue', 'green', 'yellow', 'orange', 'purple']
+for (const index in color) {
+    console.log(`Index: ${index}, Value: ${color[index]}`);
 }
