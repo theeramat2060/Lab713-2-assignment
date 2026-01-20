@@ -1,63 +1,13 @@
-// let x = 10;
-// x = 15;
-// console.log(x);
+// let x:number = 11
+// if (x > 10) {
+//     console.log('x is more than 10')
+// }
 
 
-// const x = 10;
-// x = 15;
-// console.log(x);
-//
-//
-// interface Person {
-//     name: string;
-//     age: number;
-// }
-//
-// let a: Person = {
-//     name: 'Alice',
-//     age: 30
-// }
-//
-// a = {
-//     name: 'Bob',
-//     age: 25
-// }
-// console.log(a);
-//
-// interface Person {
-//     name: string;
-//     age: number;
-// }
-//
-//
-// const a: Person = {
-//     name: 'Alice',
-//     age: 30
-// }
-//
-//
-// a = {
-//     name: 'Bob',
-//     age: 25
-// }
-// console.log(a)
-//
-//
-// interface Person {
-//     name: string;
-//     age: number;
-// }
-//
-//
-// const a: Person = {
-//     name: 'Alice',
-//     age: 30
-// }
-//
-//
-// a.name = 'Bob'
-// a.age = 25
-// console.log(a)
-
-const list = [1, 2, 3, 4, 5];
-console.log(list);
+let x:number = 4
+let y:number = 13
+if (x > 5 && y > 12 ) {
+    console.log('ค่ามากจัง')
+}else {
+    console.log((x*y)+(x/y))
+}
