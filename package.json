@@ -41,6 +41,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/theeramat2060/Lab713-2-assignment/issues"
   },
