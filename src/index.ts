@@ -1,26 +1,63 @@
-// console.log("Hello, TypeScript with Node.js!");
+// let x = 10;
+// x = 15;
+// console.log(x);
 
-// let x:number = 10;
-// x = 'hello';
 
-// let x:number | string = 10;
-// x = 'hello';
+// const x = 10;
+// x = 15;
+// console.log(x);
 //
-// let i = 0
-// i = 'hello'
-// console.log(i)
+//
+// interface Person {
+//     name: string;
+//     age: number;
+// }
+//
+// let a: Person = {
+//     name: 'Alice',
+//     age: 30
+// }
+//
+// a = {
+//     name: 'Bob',
+//     age: 25
+// }
+// console.log(a);
+//
+// interface Person {
+//     name: string;
+//     age: number;
+// }
+//
+//
+// const a: Person = {
+//     name: 'Alice',
+//     age: 30
+// }
+//
+//
+// a = {
+//     name: 'Bob',
+//     age: 25
+// }
+// console.log(a)
+//
+//
+// interface Person {
+//     name: string;
+//     age: number;
+// }
+//
+//
+// const a: Person = {
+//     name: 'Alice',
+//     age: 30
+// }
+//
+//
+// a.name = 'Bob'
+// a.age = 25
+// console.log(a)
 
-let i = 0
-i = 'hello' as any
-console.log(i)
-
-
-let x:number | string = 10;
-x = 'hello';
-if (typeof x === 'string') {
-    console.log('x is a string');
-}else if (typeof x === 'number') {
-    console.log('x is a number');
-}else {
-    console.log('x is neither a string nor a number');
-}
+const list = [1, 2, 3, 4, 5];
+console.log(list);
