@@ -72,14 +72,29 @@
 //     return result.toString();
 // }
 
-let numList=[10,20,30,40,50,77,5,3,99,23];
-const findMax = (numList):number => {
-    let max = numList[0];
-    for (let i = 1; i < numList.length; i++) {
-        if (numList[i] > max) {
-            max = numList[i];
-        }
-    }
-    return max;
+// let numList=[10,20,30,40,50,77,5,3,99,23];
+// const findMax = (numList):number => {
+//     let max = numList[0];
+//     for (let i = 1; i < numList.length; i++) {
+//         if (numList[i] > max) {
+//             max = numList[i];
+//         }
+//     }
+//     return max;
+// }
+// console.log('Max number is:', findMax(numList));
+
+export const  subtract = (a:number,b:number):string => {
+    const result =  a-b;
+    return result.toString();
 }
-console.log('Max number is:', findMax(numList));
+
+const  add = (a:number,b:number):string => {
+    const result =  a+b;
+    return result.toString();
+}
+
+
+
+
+export default add;
