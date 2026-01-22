@@ -70,21 +70,24 @@ const events: Event[] = [
     }
 ];
 
-export function getEventByCategory(category: string): Promise<Event[]> {
+export async function getEventByCategory(category: string): Promise<Event[]> {
     const filteredEvents = events.filter((event) => event.category === category);
-    return Promise.resolve(events);
+    return filteredEvents;
 }
 
-export function getAllEvents(): Promise<Event[]> {
-    return Promise.resolve(events);
+
+export async function getAllEvents(): Promise<Event[]> {
+    return events;
 }
 
-export function getEventById(id: number): Promise<Event | undefined> {
-    return Promise.resolve(events.find((event) => event.id === id));
+
+export async function getEventById(id: number): Promise<Event | undefined> {
+    return events.find((event) => event.id === id);
 }
 
-export function addEvent(newEvent: Event): Promise<Event> {
+
+export async function addEvent(newEvent: Event): Promise<Event> {
     newEvent.id = events.length + 1;
     events.push(newEvent);
-    return Promise.resolve(newEvent);
+    return newEvent;
 }
