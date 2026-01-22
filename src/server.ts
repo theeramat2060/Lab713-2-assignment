@@ -76,16 +76,24 @@ const events: Event[] = [
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello World!')
 })
+
+// app.get("/events", (req, res) => {
+//     console.log("Query Params:", req.query);
+//     const category = req.query.category;
+//     const filteredEvents = events.filter((event) => event.category === category);
+//     res.json(filteredEvents);
+// });
+
 app.get("/events", (req, res) => {
-    res.json(events);
+    if (req.query.category) {
+        const category = req.query.category;
+        const filteredEvents = events.filter((event) => event.category === category);
+        res.json(filteredEvents);
+    } else {
+        res.json(events);
+    }
 });
 
-
-app.get('/test', (req: Request, res: Response) => {
-    const id = req.query.id;
-    const output = `id: ${id}`;
-    res.send(output);
-})
 
 app.get('/test', (req, res) => {
        let returnObj = {
