@@ -23,7 +23,32 @@
 //     console.log(c);
 // }
 
-let color = ['red', 'blue', 'green', 'yellow', 'orange', 'purple']
-for (const index in color) {
-    console.log(`Index: ${index}, Value: ${color[index]}`);
+// let color = ['red', 'blue', 'green', 'yellow', 'orange', 'purple']
+// for (const index in color) {
+//     console.log(`Index: ${index}, Value: ${color[index]}`);
+// }
+
+// function greet(name){
+//     console.log('Hello ' + name);
+// }
+// greet('John');
+//
+// function greet(name){
+//     return 'Hello ' + name
+// }
+// greet('John');
+
+// function greet(name){
+//     return 'Hello ' + name
+// }
+// console.log(greet('JohnLee'));
+
+let score = [10, 20, 10, 30, 12 ]
+function scoreGrade(score: number): number {
+    let sum = 0
+    for (let i = 0; i < score.length; i++) {
+        sum += score[i]
+    }
+    return sum
 }
+console.log(scoreGrade(score));
