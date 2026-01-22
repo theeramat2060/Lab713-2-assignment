@@ -1,7 +1,7 @@
 import type Event from "../models/Event";
 
 const events: Event[] = [
-      {
+    {
         id: 1,
         category: "Music",
         title: "Concert",
@@ -11,9 +11,9 @@ const events: Event[] = [
         time: "19:00",
         petsAllowed: false,
         organizer: "Live Nation"
-  },
-  {
-    id: 2,
+    },
+    {
+        id: 2,
         category: "Music",
         title: "Festival",
         description: "A music festival",
@@ -22,9 +22,9 @@ const events: Event[] = [
         time: "12:00",
         petsAllowed: true,
         organizer: "Festival Republic"
-  },
-  {
-    id: 3,
+    },
+    {
+        id: 3,
         category: "Sports",
         title: "Football Match",
         description: "A football match",
@@ -33,10 +33,10 @@ const events: Event[] = [
         time: "15:00",
         petsAllowed: false,
         organizer: "Premier League"
-  },
-  // ...existing code...
-      {
-    id: 4,
+    },
+    // ...existing code...
+    {
+        id: 4,
         category: "Music",
         title: "Jazz Night",
         description: "An evening of smooth jazz",
@@ -45,9 +45,9 @@ const events: Event[] = [
         time: "19:00",
         petsAllowed: true,
         organizer: "Jazz Fest"
-  },
-  {
-    id: 5,
+    },
+    {
+        id: 5,
         category: "Theatre",
         title: "Shakespeare in the Park",
         description: "A performance of Hamlet",
@@ -56,9 +56,9 @@ const events: Event[] = [
         time: "18:00",
         petsAllowed: false,
         organizer: "NYC Theatre Group"
-  },
-  {
-    id: 6,
+    },
+    {
+        id: 6,
         category: "Food",
         title: "Food Truck Festival",
         description: "A variety of food trucks offering delicious meals",
@@ -67,23 +67,24 @@ const events: Event[] = [
         time: "12:00",
         petsAllowed: true,
         organizer: "Foodie Events"
-  }
+    }
 ];
-export function getEventByCategory(category: string): Event[] {
-      const filteredEvents = events.filter((event) => event.category === category);
-      return filteredEvents;
-    }
 
-    export function getAllEvents(): Event[] {
-      return events;
-    }
+export function getEventByCategory(category: string): Promise<Event[]> {
+    const filteredEvents = events.filter((event) => event.category === category);
+    return Promise.resolve(events);
+}
 
-    export function getEventById(id: number): Event | undefined {
-      return events.find((event) => event.id === id);
-    }
+export function getAllEvents(): Promise<Event[]> {
+    return Promise.resolve(events);
+}
 
-    export function addEvent(newEvent: Event): Event {
-      newEvent.id = events.length + 1;
-      events.push(newEvent);
-      return newEvent;
-    }
+export function getEventById(id: number): Promise<Event | undefined> {
+    return Promise.resolve(events.find((event) => event.id === id));
+}
+
+export function addEvent(newEvent: Event): Promise<Event> {
+    newEvent.id = events.length + 1;
+    events.push(newEvent);
+    return Promise.resolve(newEvent);
+}
