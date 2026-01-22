@@ -25,13 +25,28 @@
 
 
 
-let x =80
-if (x < 50) {
-    console.log('Grade F')
-} else if (x < 60){
-    console.log('Grade C')
-} else if (x < 80){
-    console.log('Grade B')
-} else {
-    console.log('Grade A')
-}
+// let x =80
+// if (x < 50) {
+//     console.log('Grade F')
+// } else if (x < 60){
+//     console.log('Grade C')
+// } else if (x < 80){
+//     console.log('Grade B')
+// } else {
+//     console.log('Grade A')
+// }
+
+// import { add } from './function';
+// const result = add(1,2) + 0;
+//
+//
+// console.log(result, 'type of result:', typeof result);
+
+
+import add2, { subtract2 as subtract } from './function2';
+const result = add2(1,2) + 0;
+const result2 = subtract(1,23) + 0;
+console.log(result, 'type of result:', typeof result);
+console.log(result2, 'type of result2:', typeof result2);
+
+
