@@ -1,17 +1,14 @@
-import express, {Request, Response} from 'express'
-import {getAllEvents, getEventByCategory, getEventById, addEvent} from "./services/EventService";
-import type Event from "./models/Event";
-
+import express, { Request, Response } from "express";
+import { getAllEvents, getEventByCategory, getEventById, addEvent } from "./services/EventService";
+import { event } from "./generated/prisma";
 const app = express();
-app.use(express.json());
 const port = 3000;
 
+app.use(express.json());
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World!')
+    res.json('Hello World!');
 })
-
-
 app.get("/events/:id", async (req, res) => {
     const id = parseInt(req.params.id);
     const event = await getEventById(id);
@@ -21,8 +18,6 @@ app.get("/events/:id", async (req, res) => {
         res.status(404).send("Event not found");
     }
 });
-
-
 app.get("/events", async (req, res) => {
     if (req.query.category) {
         const category = req.query.category as string;
@@ -33,16 +28,11 @@ app.get("/events", async (req, res) => {
     }
 });
 
-
 app.post("/events", async (req, res) => {
-    const newEvent: Event = req.body;
-
-
+    const newEvent: event = req.body;
     res.json(await addEvent(newEvent));
 });
-
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`)
 })
-

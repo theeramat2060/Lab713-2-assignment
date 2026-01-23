@@ -1,8 +1,7 @@
 import { Pool } from 'pg';
 import type {QueryResult } from 'pg';
 
-
-const pool = new Pool({
+export const pool = new Pool({
     user: 'admin',
     password: 'admin123',
     host: 'localhost',

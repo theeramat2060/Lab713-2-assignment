@@ -1,13 +1,19 @@
 {
   "dependencies": {
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "@prisma/extension-accelerate": "^3.0.1",
+    "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "pg": "^8.17.2"
+    "mysql2": "^3.16.0",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^25.0.1",
     "@types/pg": "^8.16.0",
     "nodemon": "^3.1.11",
+    "prisma": "^7.2.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
@@ -15,11 +21,12 @@
   "name": "lab713-2-assignment",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server.js",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node dist/server.js",
     "build": "tsc",
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -28,7 +35,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/theeramat2060/Lab713-2-assignment/issues"
   },
