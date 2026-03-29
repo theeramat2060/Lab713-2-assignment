@@ -1,8 +1,20 @@
-// Prisma initialization - not currently used
-// import {prisma} from '../lib/prisma'
+import { prisma } from '../prisma';
 export async function createEvents() {
-    // This function uses Prisma ORM which is not currently configured
-    // To use this, set up Prisma schema and client first
+    const chiangMaiOrg = await prisma.organizer.create({
+        data: {
+            name: 'Chiang Mai'
+        }
+    });
+    const cmuOrg = await prisma.organizer.create({
+        data: {
+            name: 'Chiang Mai University'
+        }
+    });
+    const camtOrg = await prisma.organizer.create({
+        data: {
+            name: 'CAMT'
+        }
+    });
     const events = [
         {
             category: "Music",
@@ -12,7 +24,7 @@ export async function createEvents() {
             date: "2021-07-01",
             time: "19:00",
             petsAllowed: false,
-            organizer: "Live Nation"
+            organizer: chiangMaiOrg
         },
         {
             category: "Music",
@@ -21,8 +33,8 @@ export async function createEvents() {
             location: "Manchester",
             date: "2021-07-15",
             time: "12:00",
-            petsAllowed: true,
-            organizer: "Festival Republic"
+            petsAllowed: false,
+            organizer: cmuOrg
         },
         {
             category: "Sports",
@@ -32,7 +44,7 @@ export async function createEvents() {
             date: "2021-08-01",
             time: "15:00",
             petsAllowed: false,
-            organizer: "Premier League"
+            organizer: camtOrg
         },
         {
             category: "Music",
@@ -41,8 +53,8 @@ export async function createEvents() {
             location: "New Orleans",
             date: "2021-09-10",
             time: "19:00",
-            petsAllowed: true,
-            organizer: "Jazz Fest"
+            petsAllowed: false,
+            organizer: chiangMaiOrg
         },
         {
             category: "Theatre",
@@ -52,7 +64,7 @@ export async function createEvents() {
             date: "2021-10-05",
             time: "18:00",
             petsAllowed: false,
-            organizer: "NYC Theatre Group"
+            organizer: cmuOrg
         },
         {
             category: "Food",
@@ -61,14 +73,12 @@ export async function createEvents() {
             location: "San Francisco",
             date: "2021-11-20",
             time: "12:00",
-            petsAllowed: true,
-            organizer: "Foodie Events"
+            petsAllowed: false,
+            organizer: cmuOrg
         }
     ];
-    // Prisma ORM not configured - skipping database initialization
-    // Uncomment the code below when Prisma is set up
-    /*
     for (const event of events) {
+        // @ts-ignore
         await prisma.event.create({
             data: {
                 category: event.category,
@@ -78,12 +88,9 @@ export async function createEvents() {
                 date: event.date,
                 time: event.time,
                 petsAllowed: event.petsAllowed,
-                organizer: event.organizer
+                organizerId: event.organizer.id
             }
-
         });
     }
-
     console.log("Database has been initialized with events.");
-    */
 }
