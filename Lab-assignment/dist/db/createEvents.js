@@ -1,16 +1,19 @@
-import { prisma } from '../prisma';
-export async function createEvents() {
-    const chiangMaiOrg = await prisma.organizer.create({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createEvents = createEvents;
+const prisma_1 = require("../lib/prisma");
+async function createEvents() {
+    const chiangMaiOrg = await prisma_1.prisma.organizer.create({
         data: {
             name: 'Chiang Mai'
         }
     });
-    const cmuOrg = await prisma.organizer.create({
+    const cmuOrg = await prisma_1.prisma.organizer.create({
         data: {
             name: 'Chiang Mai University'
         }
     });
-    const camtOrg = await prisma.organizer.create({
+    const camtOrg = await prisma_1.prisma.organizer.create({
         data: {
             name: 'CAMT'
         }
@@ -79,7 +82,7 @@ export async function createEvents() {
     ];
     for (const event of events) {
         // @ts-ignore
-        await prisma.event.create({
+        await prisma_1.prisma.event.create({
             data: {
                 category: event.category,
                 title: event.title,

@@ -1,4 +1,4 @@
-import { prisma } from '../prisma';
+import { prisma } from '../lib/prisma';
 import type { event } from "@prisma/client";
 import type { PageEvent } from "../models/EventPage";
 import { Prisma } from "@prisma/client";

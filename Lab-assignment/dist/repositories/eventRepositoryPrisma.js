@@ -1,17 +1,27 @@
-import { prisma } from '../prisma';
-import { Prisma } from "@prisma/client";
-export function getEventByCategory(category) {
-    return prisma.event.findMany({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getEventByCategory = getEventByCategory;
+exports.getAllEvents = getAllEvents;
+exports.getAllEventsWithOrganizer = getAllEventsWithOrganizer;
+exports.getAllEventsWithOrganizerPagination = getAllEventsWithOrganizerPagination;
+exports.getEventById = getEventById;
+exports.addEvent = addEvent;
+exports.countEvent = countEvent;
+exports.getAllEventsWithPagination = getAllEventsWithPagination;
+const prisma_1 = require("../lib/prisma");
+const client_1 = require("@prisma/client");
+function getEventByCategory(category) {
+    return prisma_1.prisma.event.findMany({
         where: { category },
     });
 }
-export function getAllEvents() {
-    return prisma.event.findMany({
+function getAllEvents() {
+    return prisma_1.prisma.event.findMany({
         include: { organizer: true }
     });
 }
-export function getAllEventsWithOrganizer() {
-    return prisma.event.findMany({
+function getAllEventsWithOrganizer() {
+    return prisma_1.prisma.event.findMany({
         include: {
             organizer: {
                 select: {
@@ -30,8 +40,8 @@ export function getAllEventsWithOrganizer() {
         omit: { organizerId: true }
     });
 }
-export function getAllEventsWithOrganizerPagination(pageSize, pageNo) {
-    return prisma.event.findMany({
+function getAllEventsWithOrganizerPagination(pageSize, pageNo) {
+    return prisma_1.prisma.event.findMany({
         skip: pageSize * (pageNo - 1),
         take: pageSize,
         select: {
@@ -47,8 +57,8 @@ export function getAllEventsWithOrganizerPagination(pageSize, pageNo) {
         }
     });
 }
-export function getEventById(id) {
-    return prisma.event.findUnique({
+function getEventById(id) {
+    return prisma_1.prisma.event.findUnique({
         where: { id },
         select: {
             id: true,
@@ -58,8 +68,8 @@ export function getEventById(id) {
         }
     });
 }
-export function addEvent(newEvent) {
-    return prisma.event.create({
+function addEvent(newEvent) {
+    return prisma_1.prisma.event.create({
         data: {
             category: newEvent.category,
             title: newEvent.title,
@@ -72,28 +82,26 @@ export function addEvent(newEvent) {
         }
     });
 }
-// Task 10: Count total events
-export function countEvent() {
-    return prisma.event.count();
+function countEvent() {
+    return prisma_1.prisma.event.count();
 }
-// Task 11 & 12: Get events with pagination and complex search
-export async function getAllEventsWithPagination(keyword, pageSize, pageNo) {
+async function getAllEventsWithPagination(keyword, pageSize, pageNo) {
     const where = keyword
         ? {
             OR: [
-                { title: { contains: keyword, mode: Prisma.QueryMode.insensitive } },
-                { description: { contains: keyword, mode: Prisma.QueryMode.insensitive } },
-                { category: { contains: keyword, mode: Prisma.QueryMode.insensitive } }
+                { title: { contains: keyword, mode: client_1.Prisma.QueryMode.insensitive } },
+                { description: { contains: keyword, mode: client_1.Prisma.QueryMode.insensitive } },
+                { category: { contains: keyword, mode: client_1.Prisma.QueryMode.insensitive } }
             ]
         }
         : {};
     const [events, count] = await Promise.all([
-        prisma.event.findMany({
+        prisma_1.prisma.event.findMany({
             where,
             skip: pageSize * (pageNo - 1),
             take: pageSize
         }),
-        prisma.event.count({ where })
+        prisma_1.prisma.event.count({ where })
     ]);
     return { count, events };
 }

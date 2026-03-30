@@ -1,4 +1,4 @@
-import { prisma } from '../prisma'
+import { prisma } from '../lib/prisma'
 
 export async function createEvents() {
           const chiangMaiOrg = await prisma.organizer.create({

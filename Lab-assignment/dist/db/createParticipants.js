@@ -1,5 +1,8 @@
-import { prisma } from '../prisma';
-export async function createParticipants() {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createParticipants = createParticipants;
+const prisma_1 = require("../lib/prisma");
+async function createParticipants() {
     const participants = [
         {
             name: 'John Doe',
@@ -23,12 +26,12 @@ export async function createParticipants() {
         },
     ];
     for (const participant of participants) {
-        await prisma.participant.create({
+        await prisma_1.prisma.participant.create({
             data: participant,
         });
     }
-    const responseParticipants = await prisma.participant.findMany();
-    const responseEvents = await prisma.event.findMany();
+    const responseParticipants = await prisma_1.prisma.participant.findMany();
+    const responseEvents = await prisma_1.prisma.event.findMany();
     Promise.all([addEvent(responseParticipants[0].id, responseEvents[0].id),
         addEvent(responseParticipants[0].id, responseEvents[1].id),
         addEvent(responseParticipants[0].id, responseEvents[2].id),
@@ -42,12 +45,12 @@ export async function createParticipants() {
         addEvent(responseParticipants[4].id, responseEvents[4].id),
         addEvent(responseParticipants[1].id, responseEvents[5].id)]).then(() => {
         Promise.all([
-            prisma.participant.findMany({
+            prisma_1.prisma.participant.findMany({
                 include: {
                     events: true
                 }
             }),
-            prisma.event.findMany({
+            prisma_1.prisma.event.findMany({
                 include: {
                     participants: true
                 }
@@ -59,7 +62,7 @@ export async function createParticipants() {
     });
 }
 async function addEvent(participantId, eventId) {
-    await prisma.participant.update({
+    await prisma_1.prisma.participant.update({
         where: { id: participantId },
         data: {
             events: {
